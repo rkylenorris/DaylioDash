@@ -1,0 +1,2 @@
+dim tables: custom_moods, tags, day_entries
+createdAt can be converted using pd.todatetime, unit=ms, its in unix format
