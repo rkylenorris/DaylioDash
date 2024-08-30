@@ -1,0 +1,1 @@
+[{"name":"id","type_name":"Int64.Type","kind":"number"},{"name":"custom_name","type_name":"Text.Type","kind":"text"},{"name":"mood_group_id","type_name":"Int64.Type","kind":"number"},{"name":"mood_group_order","type_name":"Int64.Type","kind":"number"},{"name":"createdAt","type_name":"timestamp","kind":"datetime"}]

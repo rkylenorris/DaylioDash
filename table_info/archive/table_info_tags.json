@@ -1,0 +1,1 @@
+[{"name":"id","type_name":"Int64.Type","kind":"number"},{"name":"name","type_name":"Text.Type","kind":"text"},{"name":"createdAt","type_name":"timestamp","kind":"datetime"},{"name":"order","type_name":"Int64.Type","kind":"number"},{"name":"state","type_name":"Int64.Type","kind":"number"},{"name":"id_tag_group","type_name":"Int64.Type","kind":"number"}]

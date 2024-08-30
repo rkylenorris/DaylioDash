@@ -1,0 +1,7 @@
+{
+    "name": "tags_to_goals",
+    "left_table": "tags",
+    "left_column": "id",
+    "right_table": "goals",
+    "right_column": "id_tag"
+}

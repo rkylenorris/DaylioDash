@@ -1,0 +1,251 @@
+{
+    "customMoods": [
+        {
+            "name": "id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "custom_name",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "mood_group_id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "mood_group_order",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "createdAt",
+            "type_name": "timestamp",
+            "kind": "datetime"
+        }
+    ],
+    "dayEntries": [
+        {
+            "name": "id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "minute",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "hour",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "day",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "month",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "year",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "datetime",
+            "type_name": "timestamp",
+            "kind": "datetime"
+        },
+        {
+            "name": "timeZoneOffset",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "mood",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "note",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "note_title",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "tags",
+            "type_name": "Text.Type",
+            "kind": "text"
+        }
+    ],
+    "goalEntries": [
+        {
+            "name": "id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "goalId",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "year",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "month",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "day",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "hour",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "minute",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "second",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "createdAt",
+            "type_name": "timestamp",
+            "kind": "datetime"
+        }
+    ],
+    "goals": [
+        {
+            "name": "id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "goal_id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "created_at",
+            "type_name": "timestamp",
+            "kind": "datime"
+        },
+        {
+            "name": "id_tag",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "end_date",
+            "type_name": "timestamp",
+            "kind": "datetime"
+        },
+        {
+            "name": "name",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "note",
+            "type_name": "Text.Type",
+            "kind": "text"
+        }
+    ],
+    "prefs": [
+        {
+            "name": "key",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "pref_name",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "value",
+            "type_name": "Text.Type",
+            "kind": "text"
+        }
+    ],
+    "tags": [
+        {
+            "name": "id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "name",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "createdAt",
+            "type_name": "timestamp",
+            "kind": "datetime"
+        },
+        {
+            "name": "order",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "state",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "id_tag_group",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        }
+    ],
+    "tag_groups": [
+        {
+            "name": "id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "name",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "is_expanded",
+            "type_name": "Logical.Type",
+            "kind": "logical"
+        },
+        {
+            "name": "order",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "id_predefined",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        }
+    ]
+}

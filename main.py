@@ -1,51 +1,54 @@
 import pandas as pd
 import json
 from pathlib import Path
+import table_info as ti
+import prep as pr
 
+# TODO General Outline: prep file, load data into objects, create final datasets, create charts, export
+
+# pr.prep_backup()
+
+rolling_calendar = pr.create_calendar()
+print(rolling_calendar.tail())
 data_dir = Path('data')
 table_info_path = Path('table_info')
+relationships_dir = table_info_path / "relationships"
 
-json_path = Path(data_dir / 'backup_2024_08_22.json')
+# load table info json
+json_path = Path(data_dir / 'daylio.json')
 
-with open(json_path, 'r') as f:
-    data = json.load(f)
+with open(json_path, 'r', encoding='utf8') as f:
+    data = json.loads(f.read())
 
-tables_needed = [
-    'customMoods',
-    'tags',
-    'dayEntries',
-    'tag_groups',
-    'goalEntries'
-]
-dfs = []
-for table in tables_needed:
-    df = pd.read_excel(data_dir / f'table_info.xlsx', sheet_name=table)
-    df.to_json(table_info_path / f'table_info_{table}.json', orient='records')
+info_tables_l = []
 
+path = table_info_path / f'table_info.json'
+table_info_str = path.read_text()
+table_info_all = json.loads(table_info_str)
+
+relationship_list = []
+# load relationships info
+for file in relationships_dir.iterdir():
+    if file.is_file() and file.suffix == ".json":
+        text = file.read_text()
+        relationship_list.append(json.loads(text))
+
+relationships = ti.Relationships(list(relationship_list))
+
+for table in pr.tables_needed:
+
+    info_tables_l.append(ti.DaylioTableInfo.from_json(table_info_all[table], table,
+                                                      relationships.get_tables_relationships(table)))
+
+info_tables = ti.DaylioInfoTables(info_tables_l)
+
+print(info_tables.get_table('customMoods')[0].__dict__)
 
 
 # for table in tables_needed:
 #     print(table)
 #     df = pd.DataFrame(data[table])
 #     df.to_csv(data_dir / f'{table}.csv', index=False)
-#     with open(data_dir / f'{table}_columns.txt', 'a') as f:
-#         for column in df.columns:
-#             f.write(column + '\n')
-#     print("""
-# -----------------------------------------------------------------------
-#     """)
-#
-#
-# combined_str = ""
-# for file in data_dir.glob('*_columns.txt'):
-#     table_name = file.stem.replace('_columns', '')
-#     with open(file, 'r') as f:
-#         table_columns = f.read()
-#     table_info = f"{table_name}\n-------\n{table_columns}\n\n********************\n\n"
-#     combined_str += table_info
-#
-# with open(data_dir / 'table_info.txt', 'w') as f:
-#     f.write(combined_str)
 
 
 

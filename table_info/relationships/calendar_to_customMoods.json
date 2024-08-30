@@ -1,0 +1,7 @@
+{
+    "name": "calendar_to_customMoods",
+    "left_table": "rolling_calendar",
+    "left_column": "date",
+    "right_table": "customMoods",
+    "right_column": "createdAt"
+}

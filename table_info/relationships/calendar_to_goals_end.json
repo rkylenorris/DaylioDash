@@ -1,0 +1,7 @@
+{
+    "name": "calendar_to_goals_end",
+    "left_table": "rolling_calendar",
+    "left_column": "date",
+    "right_table": "goals",
+    "right_column": "end_date"
+}

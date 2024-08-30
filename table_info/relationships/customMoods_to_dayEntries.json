@@ -1,0 +1,7 @@
+{
+    "name": "customMoods_to_dayEntries",
+    "left_table": "customMoods",
+    "left_column": "id",
+    "right_table": "dayEntries",
+    "right_column": "mood"
+}

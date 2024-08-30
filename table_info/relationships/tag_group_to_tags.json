@@ -1,0 +1,7 @@
+{
+    "name": "tag_group_to_tags",
+    "left_table": "tag_groups",
+    "left_column": "id",
+    "right_table": "tags",
+    "right_column": "id_tag_group"
+}

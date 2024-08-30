@@ -1,0 +1,7 @@
+{
+    "name": "goals_to_goalEntries",
+    "left_table": "goals",
+    "left_column": "goalId",
+    "right_table": "goalEntries",
+    "right_column": "goal_id"
+}

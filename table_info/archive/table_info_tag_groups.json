@@ -1,0 +1,1 @@
+[{"name":"id","type_name":"Int64.Type","kind":"number"},{"name":"name","type_name":"Text.Type","kind":"text"},{"name":"is_expanded","type_name":"Logical.Type","kind":"logical"},{"name":"order","type_name":"Int64.Type","kind":"number"},{"name":"id_predefined","type_name":"Int64.Type","kind":"number"}]
