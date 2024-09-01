@@ -3,14 +3,17 @@ import json
 from pathlib import Path
 import table_info as ti
 import prep as pr
+import daylio_tables as dyt
 
 # TODO General Outline: prep file, load data into objects, create final datasets, create charts, export
 
 # pr.prep_backup()
 
 rolling_calendar = pr.create_calendar()
+
 print(rolling_calendar.tail())
 data_dir = Path('data')
+rolling_calendar.to_csv(data_dir / 'calendar.csv', index=False)
 table_info_path = Path('table_info')
 relationships_dir = table_info_path / "relationships"
 
@@ -41,23 +44,10 @@ for table in pr.tables_needed:
                                                       relationships.get_tables_relationships(table)))
 
 info_tables = ti.DaylioInfoTables(info_tables_l)
-
-print(info_tables.get_table('customMoods')[0].__dict__)
-
-
-# for table in tables_needed:
-#     print(table)
-#     df = pd.DataFrame(data[table])
-#     df.to_csv(data_dir / f'{table}.csv', index=False)
+all_tables = []
+for info_table in info_tables.tables:
+    tbl_name = info_table.name
+    csv_path = data_dir / f'{tbl_name}.csv'
+    all_tables.append(dyt.DaylioTable.from_dataframe(pd.read_csv(csv_path), info_table))
 
 
-
-
-
-
-# custom_moods_df = pd.DataFrame(data['customMoods'])
-#
-# custom_moods_df['createdAt'] = pd.to_datetime(custom_moods_df['createdAt'], unit='ms')
-#
-# # Display the DataFrame
-# print(custom_moods_df.head())
