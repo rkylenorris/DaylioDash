@@ -11,6 +11,11 @@
             "kind": "text"
         },
         {
+            "name": "mood_value",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
             "name": "mood_group_id",
             "type_name": "Int64.Type",
             "kind": "number"
@@ -24,6 +29,11 @@
             "name": "createdAt",
             "type_name": "timestamp",
             "kind": "datetime"
+        },
+        {
+            "name": "date",
+            "type_name": "timestamp",
+            "kind": "date"
         }
     ],
     "dayEntries": [
@@ -56,6 +66,11 @@
             "name": "tags",
             "type_name": "Text.Type",
             "kind": "text"
+        },
+        {
+            "name": "date",
+            "type_name": "timestamp",
+            "kind": "date"
         }
     ],
     "goalEntries": [
@@ -73,6 +88,11 @@
             "name": "createdAt",
             "type_name": "timestamp",
             "kind": "datetime"
+        },
+        {
+            "name": "date",
+            "type_name": "timestamp",
+            "kind": "date"
         }
     ],
     "goals": [
@@ -110,6 +130,16 @@
             "name": "note",
             "type_name": "Text.Type",
             "kind": "text"
+        },
+        {
+            "name": "date",
+            "type_name": "timestamp",
+            "kind": "date"
+        },
+        {
+            "name": "date_end",
+            "type_name": "timestamp",
+            "kind": "date"
         }
     ],
     "prefs": [
@@ -149,6 +179,11 @@
             "name": "id_tag_group",
             "type_name": "Int64.Type",
             "kind": "number"
+        },
+        {
+            "name": "date",
+            "type_name": "timestamp",
+            "kind": "date"
         }
     ],
     "tag_groups": [

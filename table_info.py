@@ -46,8 +46,8 @@ class DaylioTableInfo:
             columns_names.append(column.name)
         return columns_names
 
-    def get_columns_by_kind(self, kind: str) -> List[InfoColumn]:
-        return [x for x in self.columns if x.kind == kind]
+    def get_columns_by_type_name(self, type_name: str) -> List[InfoColumn]:
+        return [x for x in self.columns if x.type_name == type_name]
 
     def get_columns_by_name(self, name: str) -> List[InfoColumn]:
         return [x for x in self.columns if x.name == name]

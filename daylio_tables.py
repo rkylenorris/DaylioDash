@@ -1,24 +1,47 @@
 import pandas as pd
 from typing import List
-from table_info import DaylioTableInfo
-
-
-fields_to_convert_to_datetime = [
-    'createdAt',
-    'datetime'
-]
+from table_info import DaylioTableInfo, InfoColumn
 
 
 # TODO add method for merging with other daylio tables based on relationships values
+# TODO move constructor stuff down to from_dataframe class method for it to work properly
 class DaylioTable:
     def __init__(self, dataframe: pd.DataFrame, info: DaylioTableInfo):
-        for column in dataframe.columns:
-            if column in fields_to_convert_to_datetime:
-                dataframe[column] = pd.to_datetime(dataframe[column], unit='ms')
+
+        if info.name == 'customMoods':
+            dataframe['mood_value'] = 6 - dataframe['mood_group_id']
         self.dataframe = dataframe
         self.name = info.name
         self.columns_info = info.columns
         self.relationships = info.relationships
+        self.fix_timestamp_columns()
+
+    def fix_timestamp_columns(self):
+        last_col = InfoColumn('default', 'default', 'default')
+        timestamp_cols = [x for x in self.columns_info if x.type_name == 'timestamp']
+        for col in timestamp_cols:
+            match col.name:
+                case "createdAt":
+                    col.field_to_create = "date"
+                case "datetime":
+                    col.field_to_create = "date"
+                case "created_at":
+                    col.field_to_create = "date"
+                case "end_date":
+                    col.field_to_create = "date_end"
+                case _:
+                    col.field_to_create = "none"
+        for col in timestamp_cols:
+            if col.field_to_create == 'none':
+                continue
+            else:
+                self.dataframe[col.name] = self.dataframe[col.name].replace(0, pd.NaT)
+                if self.name == "goals":
+                    self.dataframe[col.name] = self.dataframe[col.name].replace(-1, pd.NaT)
+                self.dataframe[col.name] = pd.to_datetime(self.dataframe[col.name], unit='ms')
+                self.dataframe[col.field_to_create] = pd.to_datetime(self.dataframe[col.name].dt.date)
+
+
 
     @classmethod
     def from_dataframe(cls, dataframe: pd.DataFrame, info: DaylioTableInfo) -> 'DaylioTable':
