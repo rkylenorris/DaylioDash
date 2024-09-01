@@ -1,10 +1,12 @@
 import sqlite3
-
+import prep
 # Connect to SQLite database (or create it)
 conn = sqlite3.connect('data/daylio.db')
 cursor = conn.cursor()
-cursor.close()
 
+for tbl in prep.tables_needed:
+    cursor.execute(f'DROP TABLE IF EXISTS {tbl}')
+cursor.execute(f'DROP TABLE IF EXISTS calendar')
 # Create customMoods table
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS customMoods (
@@ -23,7 +25,8 @@ CREATE TABLE IF NOT EXISTS tags (
     name TEXT,
     createdAt DATETIME,
     `order` INTEGER,
-    FOREIGN KEY id_tag_group REFERENCES tag_groups(id)
+    id_tag_group INTEGER,
+    FOREIGN KEY (id_tag_group) REFERENCES tag_groups(id)
 )
 ''')
 
@@ -32,10 +35,11 @@ cursor.execute('''
 CREATE TABLE IF NOT EXISTS dayEntries (
     id INTEGER PRIMARY KEY,
     datetime DATETIME,
-    FOREIGN KEY mood REFERENCES customMoods(id),
+    mood INTEGER,
     note TEXT,
     note_title TEXT,
-    tags TEXT
+    tags TEXT,
+    FOREIGN KEY (mood) REFERENCES customMoods(id)
 )
 ''')
 
@@ -43,21 +47,24 @@ CREATE TABLE IF NOT EXISTS dayEntries (
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS goalEntries (
     id INTEGER PRIMARY KEY,
-    FOREIGN KEY goalid REFERENCES goals(goal_id),
+    goalId INTEGER,
     createdAt DATETIME,
+    FOREIGN KEY (goalId) REFERENCES goals(goal_id)
 )
 ''')
+
 
 # Create goals table
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS goals (
     id INTEGER PRIMARY KEY,
     goal_id INTEGER,
-    createdAt DATETIME,
-    FOREIGN KEY (id_tag) REFERENCES tags(id),
+    created_at DATETIME,
+    id_tag INTEGER,
     end_date DATEIME,
     name TEXT,
-    note TEXT
+    note TEXT,
+    FOREIGN KEY (id_tag) REFERENCES tags(id)
 )
 ''')
 
@@ -76,8 +83,7 @@ CREATE TABLE IF NOT EXISTS prefs (
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS tag_groups (
     id INTEGER PRIMARY KEY,
-    name TEXT,
-    createdAt DATETIME
+    name TEXT
 )
 ''')
 
@@ -98,3 +104,6 @@ CREATE TABLE calendar (
     IsWeekday BOOLEAN
 );
 ''')
+
+conn.commit()
+conn.close()

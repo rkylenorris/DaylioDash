@@ -40,6 +40,12 @@ class DaylioTableInfo:
         self.name = name
         self.relationships = relationships
 
+    def get_columns_names(self) -> List[str]:
+        columns_names = []
+        for column in self.columns:
+            columns_names.append(column.name)
+        return columns_names
+
     def get_columns_by_kind(self, kind: str) -> List[InfoColumn]:
         return [x for x in self.columns if x.kind == kind]
 

@@ -45,20 +45,9 @@ for table in pr.tables_needed:
                                                       relationships.get_tables_relationships(table)))
 
 info_tables = ti.DaylioInfoTables(info_tables_l)
-all_tables = []
-for info_table in info_tables.tables:
-    tbl_name = info_table.name
-    csv_path = data_dir / f'{tbl_name}.csv'
-    all_tables.append(dyt.DaylioTable.from_dataframe(pd.read_csv(csv_path), info_table))
-
-conn = sqlite3.connect('data/daylio.db')
-for daylio_table in all_tables:
-    if daylio_table.name in ['prefs']:
-        continue
-    print(f"Loading table {daylio_table.name} to daylio.db using sqlite")
-    info_tbl = info_tables.get_table(daylio_table.name)
-    cols_to_use = info_tbl[0].get_columns_names()
-    daylio_table.dataframe[cols_to_use].to_sql(daylio_table.name, con=conn, if_exists='append', index=False)
-
-conn.commit()
-conn.close()
+for tbl in info_tables.tables:
+    print(tbl.name)
+    print("--------------------")
+    for col in tbl.columns:
+        print(col.name)
+    print("--------------------")
