@@ -60,5 +60,8 @@ for daylio_table in all_tables:
     cols_to_use = info_tbl[0].get_columns_names()
     daylio_table.dataframe[cols_to_use].to_sql(daylio_table.name, con=conn, if_exists='append', index=False)
 
+# TODO need to write sql queries to provide final report views aggregating data
+# TODO create sql functions for running those queires and returning the dfs
+# TODO convert those views into charts and graphs using Plotly
 conn.commit()
 conn.close()

@@ -33,39 +33,9 @@
             "kind": "number"
         },
         {
-            "name": "minute",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "hour",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "day",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "month",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "year",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
             "name": "datetime",
             "type_name": "timestamp",
             "kind": "datetime"
-        },
-        {
-            "name": "timeZoneOffset",
-            "type_name": "Int64.Type",
-            "kind": "number"
         },
         {
             "name": "mood",
@@ -96,36 +66,6 @@
         },
         {
             "name": "goalId",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "year",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "month",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "day",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "hour",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "minute",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "second",
             "type_name": "Int64.Type",
             "kind": "number"
         },
@@ -206,16 +146,6 @@
             "kind": "datetime"
         },
         {
-            "name": "order",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "state",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
             "name": "id_tag_group",
             "type_name": "Int64.Type",
             "kind": "number"
@@ -231,21 +161,6 @@
             "name": "name",
             "type_name": "Text.Type",
             "kind": "text"
-        },
-        {
-            "name": "is_expanded",
-            "type_name": "Logical.Type",
-            "kind": "logical"
-        },
-        {
-            "name": "order",
-            "type_name": "Int64.Type",
-            "kind": "number"
-        },
-        {
-            "name": "id_predefined",
-            "type_name": "Int64.Type",
-            "kind": "number"
         }
     ]
 }
