@@ -1,13 +1,3 @@
-from io import StringIO
-
-import pandas as pd
-import json
-from typing import List
-from table_info import DaylioTableInfo, InfoColumn
-
-
-# TODO add method for merging with other daylio tables based on relationships values
-# TODO move constructor stuff down to from_dataframe class method for it to work properly
 class DaylioTable:
     def __init__(self, dataframe: pd.DataFrame, info: DaylioTableInfo):
 
@@ -18,13 +8,6 @@ class DaylioTable:
         self.columns_info = info.columns
         self.relationships = info.relationships
         self.fix_timestamp_columns()
-
-
-    def get_needed_columns(self):
-        cols = []
-        for column in self.columns_info:
-            cols.append(column.name)
-        return cols
 
     def fix_timestamp_columns(self):
         last_col = InfoColumn('default', 'default', 'default')
@@ -56,11 +39,6 @@ class DaylioTable:
     @classmethod
     def from_dataframe(cls, dataframe: pd.DataFrame, info: DaylioTableInfo) -> 'DaylioTable':
         return cls(dataframe, info)
-
-    @classmethod
-    def from_json(cls, json_data: dict, info: DaylioTableInfo) -> 'DaylioTable':
-        df = pd.read_json(StringIO(json.dumps(json_data)))
-        return cls(df, info)
 
     def get_column(self, column_name: str) -> pd.Series:
         """Return a specific column as a pandas Series."""

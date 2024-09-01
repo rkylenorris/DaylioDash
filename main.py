@@ -1,12 +1,11 @@
-import pandas as pd
 import json
-from pathlib import Path
 import table_info as ti
 import prep as pr
 import daylio_tables as dyt
 import sqlite3
-from create_sqltables import create_daylio_sql_tables
-from sql_tools import execute_command_script
+import pandas as pd
+from pathlib import Path
+from create_sqltables import create_daylio_sql_tables, insert_mood_groups, insert_prefs
 
 # TODO General Outline: prep file, load data into objects, create final datasets, create charts, export
 
@@ -42,7 +41,6 @@ for file in relationships_dir.iterdir():
 relationships = ti.Relationships(list(relationship_list))
 
 for table in pr.tables_needed:
-
     info_tables_l.append(ti.DaylioTableInfo.from_json(table_info_all[table], table,
                                                       relationships.get_tables_relationships(table)))
 
@@ -50,10 +48,19 @@ info_tables = ti.DaylioInfoTables(info_tables_l)
 all_tables = []
 for info_table in info_tables.tables:
     tbl_name = info_table.name
-    csv_path = data_dir / f'{tbl_name}.csv'
-    all_tables.append(dyt.DaylioTable(pd.read_csv(csv_path), info_table))
+    json_data = data[tbl_name]
+    all_tables.append(dyt.DaylioTable.from_json(json_data, info_table))
 
+
+prefs_df = next(filter(lambda x: x.name == 'prefs', all_tables), None)
+print(prefs_df.dataframe[['key', 'value']].to_dict('records'))
+
+
+# erases current tables and remakes them fresh for the data
 create_daylio_sql_tables()
+insert_prefs(prefs_df.dataframe[['key', 'value']].to_dict('records'))
+# inserts values into dimension table mood_groups. had to be manually created, was not provided from data source
+insert_mood_groups()
 
 conn = sqlite3.connect('data/daylio.db')
 
@@ -61,11 +68,17 @@ for daylio_table in all_tables:
 
     if daylio_table.name in ['prefs']:
         continue
+    elif daylio_table.name == 'dayEntries':
+        tags_df = daylio_table.dataframe[['id', 'tags']].explode('tags')
+        tags_df = tags_df.rename(columns={'id': 'entry_id', 'tags': 'tag'})
+        with pd.option_context("future.no_silent_downcasting", True):
+            tags_df['tag'] = tags_df['tag'].fillna(0).astype(int)
+        tags_df.to_sql('entry_tags', con=conn, if_exists='append', index=False)
 
     print(f"Loading table {daylio_table.name} to daylio.db using sqlite")
 
-    info_tbl = info_tables.get_table(daylio_table.name)
-    cols_to_use = info_tbl[0].get_columns_names()
+    cols_to_use = list(daylio_table.get_needed_columns())
+
     daylio_table.dataframe[cols_to_use].to_sql(daylio_table.name, con=conn, if_exists='append', index=False)
 
 rolling_calendar.to_sql('calendar', con=conn, if_exists='append', index=False)
@@ -73,5 +86,3 @@ rolling_calendar.to_sql('calendar', con=conn, if_exists='append', index=False)
 # TODO create sql functions for running those queries and returning the dfs
 # TODO convert those views into charts and graphs using Plotly
 conn.commit()
-
-execute_command_script(conn, 'create_entry_tags.sql')

@@ -63,11 +63,6 @@
             "kind": "text"
         },
         {
-            "name": "tags",
-            "type_name": "Text.Type",
-            "kind": "text"
-        },
-        {
             "name": "date",
             "type_name": "timestamp",
             "kind": "date"
