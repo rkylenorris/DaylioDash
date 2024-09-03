@@ -1,2 +1,12 @@
 dim tables: custom_moods, tags, day_entries
 createdAt can be converted using pd.todatetime, unit=ms, its in unix format
+use daylio to deliver to website with interactive elements
+will need to be able to secure it so only me and carla can see it
+
+query needs:
+one to aggregate mood counts per day
+one to aggregate tags per entry and per day
+one to get goals accomplished each day, week, month
+chart view that shows average daily mood over x weeks
+pie view showing mood group percentages
+most associated tags per mood group
