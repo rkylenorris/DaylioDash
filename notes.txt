@@ -4,9 +4,14 @@ use daylio to deliver to website with interactive elements
 will need to be able to secure it so only me and carla can see it
 
 query needs:
-one to aggregate mood counts per day
+one to aggregate mood_group counts per day as well as mood count
 one to aggregate tags per entry and per day
 one to get goals accomplished each day, week, month
 chart view that shows average daily mood over x weeks
 pie view showing mood group percentages
 most associated tags per mood group
+
+
+Before publishing:
+need to create scripts that create the views
+i manually made them this go round
