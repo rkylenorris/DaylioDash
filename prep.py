@@ -6,6 +6,7 @@ import base64
 from pathlib import Path
 from datetime import datetime
 import json
+import  shutil
 
 # TODO add code to archive source files after use
 
@@ -76,7 +77,9 @@ def prep_backup():
     print('Unzipping daylio backup file..')
     with zf.ZipFile(str(data_pickup_file), 'r') as zip_ref:
         zip_ref.extractall(str(data_dir))
-        os.remove(data_dir / "assets")
+        # os.chmod(data_dir / "assets", 0o777)
+        # os.remove(data_dir / "assets")
+        shutil.rmtree(str(data_dir / 'assets'))
 
     with open(str(data_dir / "backup.daylio"), 'r') as d:
         contents = d.read()

@@ -9,7 +9,7 @@ from create_sqltables import create_daylio_sql_tables, insert_mood_groups, inser
 
 # TODO General Outline: prep file, load data into objects, create final datasets, create charts, export
 
-# pr.prep_backup()
+pr.prep_backup()
 
 rolling_calendar = pr.create_calendar()
 

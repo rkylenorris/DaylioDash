@@ -8,5 +8,5 @@ FROM
        day
     ,mood_value
     FROM v_entry_details)
-group by date
-order by date desc
+group by day
+order by day desc
