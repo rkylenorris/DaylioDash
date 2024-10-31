@@ -6,7 +6,7 @@ import base64
 from pathlib import Path
 from datetime import datetime
 import json
-import  shutil
+import shutil
 
 # TODO add code to archive source files after use
 
@@ -22,14 +22,14 @@ tables_needed = [
 
 
 def is_weekend(day: int):
-    if day > 5:
+    if day == 6 or day == 0:
         return True
     else:
         return False
 
 
 def is_weekday(day: int):
-    if day < 6:
+    if 0 < day < 6:
         return True
     else:
         return False
@@ -62,7 +62,7 @@ def prep_backup():
     print(Path.cwd())
 
     if Path.cwd().name != expected_wd:  # if wd not correct, search for dir in current user dir
-        for folder in Path.cwd().rglob(expected_wd):
+        for folder in Path.home().rglob(expected_wd):
             if folder.is_dir():
                 os.chdir(str(folder))
                 break

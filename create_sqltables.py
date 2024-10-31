@@ -103,7 +103,6 @@ def create_daylio_sql_tables():
         TimeStamp DATETIME PRIMARY KEY,
         Date DATE,
         Day INTEGER,
-        DayOfYear INTEGER,
         DayName TEXT,
         Week INTEGER,
         Month INTEGER,

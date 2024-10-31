@@ -72,7 +72,7 @@ for daylio_table in all_tables:
         tags_df = daylio_table.dataframe[['id', 'tags']].explode('tags')
         tags_df = tags_df.rename(columns={'id': 'entry_id', 'tags': 'tag'})
         with pd.option_context("future.no_silent_downcasting", True):
-            tags_df['tag'] = tags_df['tag'].fillna(0).astype(int)
+            tags_df['tags'] = tags_df['tags'].fillna(0).astype(int)
         tags_df.to_sql('entry_tags', con=conn, if_exists='append', index=False)
 
     print(f"Loading table {daylio_table.name} to daylio.db using sqlite")
