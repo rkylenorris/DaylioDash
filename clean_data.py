@@ -50,3 +50,34 @@ class DaylioTable:
     def to_sql(self, connection):
         cols = [x.name for x in self.column_info]
         self.table[cols].to_sql(self.name, connection, if_exists='replace', index=False)
+
+    @classmethod
+    def create_mood_groups(cls, columns: list[ColumnInfo]):
+        df = pd.DataFrame([
+            {
+                "id": 1,
+                'name': 'The Best Days',
+                'value': 5
+            },
+            {
+                "id": 2,
+                'name': 'The Good Days',
+                'value': 4
+            },
+            {
+                "id": 3,
+                'name': 'The Meh Days',
+                'value': 3
+            },
+            {
+                "id": 4,
+                'name': 'The Bad Days',
+                'value': 2
+            },
+            {
+                "id": 5,
+                'name': 'The Worst Days',
+                'value': 1
+            },
+        ])
+        return DaylioTable('mood_groups', df, columns)

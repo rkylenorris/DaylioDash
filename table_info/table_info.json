@@ -192,5 +192,34 @@
             "type_name": "Text.Type",
             "kind": "text"
         }
+    ],
+    "mood_groups": [
+        {
+            "name": "id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "name",
+            "type_name": "Text.Type",
+            "kind": "text"
+        },
+        {
+            "name": "value",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        }
+    ],
+    "entry_tags": [
+        {
+            "name": "entry_id",
+            "type_name": "Int64.Type",
+            "kind": "number"
+        },
+        {
+            "name": "tag",
+            "type_name": "Text.Type",
+            "kind": "text"
+        }
     ]
 }
